@@ -68,13 +68,20 @@ function handleCheckoutSubmit(event) {
     return;
   }
 
-  const orderId = 'DCC-' + Math.floor(100000 + Math.random() * 900000);
-  Storage.set('dcc_last_order', {
+ const orderId = 'DCC-' + Math.floor(100000 + Math.random() * 900000);
+  const order = {
     id: orderId,
     items: getCart(),
     total: getCartTotal(),
-    name: form.querySelector('#checkout-name').value.trim()
-  });
+    name: form.querySelector('#checkout-name').value.trim(),
+    date: new Date().toISOString()
+  };
+
+  Storage.set('dcc_last_order', order);
+
+  const allOrders = Storage.get('dcc_all_orders', []);
+  allOrders.unshift(order); // newest first
+  Storage.set('dcc_all_orders', allOrders);
 
   clearCart();
   window.location.href = `/pages/order-confirmation.html?order=${orderId}`;
