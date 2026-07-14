@@ -49,6 +49,63 @@ function logout() {
   Storage.set(SESSION_KEY, null);
   window.location.href = '/index.html';
 }
+/**
+ * Admin authentication is separate from customer accounts. There is
+ * exactly one demo admin credential, hardcoded here since there's no
+ * backend to store it securely. This is fine for a front-end teaching
+ * project demo, but would never be acceptable in a real deployed app.
+ */
+const ADMIN_CREDENTIALS = { username: 'admin@districtcoffee.com', password: 'admin123' };
+const ADMIN_SESSION_KEY = 'dcc_admin_session';
+
+/** @function 51: adminLogin - checks credentials against the single demo admin account */
+function adminLogin(username, password) {
+  if (username.toLowerCase() === ADMIN_CREDENTIALS.username && password === ADMIN_CREDENTIALS.password) {
+    Storage.set(ADMIN_SESSION_KEY, { username, loggedInAt: new Date().toISOString() });
+    return { success: true };
+  }
+  return { success: false, message: 'Incorrect admin username or password.' };
+}
+
+/** @function 52: getAdminSession - returns the current admin session, or null */
+function getAdminSession() {
+  return Storage.get(ADMIN_SESSION_KEY, null);
+}
+
+/** @function 53: adminLogout - clears the admin session */
+function adminLogout() {
+  Storage.set(ADMIN_SESSION_KEY, null);
+  window.location.href = '/pages/admin-login.html';
+}
+
+/** @function 54: handleAdminLoginSubmit - validates + submits the admin login form */
+function handleAdminLoginSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  const username = form.querySelector('#admin-username');
+  const password = form.querySelector('#admin-password');
+
+  [username, password].forEach(clearFieldError);
+  let valid = true;
+
+  if (!isRequired(username.value)) {
+    showFieldError(username, 'Enter the admin username.');
+    valid = false;
+  }
+  if (!isRequired(password.value)) {
+    showFieldError(password, 'Enter the admin password.');
+    valid = false;
+  }
+  if (!valid) return;
+
+  const result = adminLogin(username.value.trim(), password.value);
+  if (!result.success) {
+    showToast(result.message, 'error');
+    return;
+  }
+
+  window.location.href = '/pages/admin.html';
+}
 
 /** @function 41: handleLoginSubmit - validates + submits the login form */
 function handleLoginSubmit(event) {
