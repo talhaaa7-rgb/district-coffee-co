@@ -42,7 +42,21 @@ function renderConfirmation() {
         <span class="price fs-5">${formatPrice(order.total)}</span>
       </div>
     </div>
-    <div class="text-center mt-5">
-      <a href="/index.html" class="btn btn-brand">Back to home</a>
+    <div class="text-center mt-5 d-flex gap-3 justify-content-center flex-wrap">
+      <button class="btn btn-brand" onclick="reorderLastOrder()">Order again</button>
+      <a href="/index.html" class="btn btn-brand-outline" style="border-color: var(--color-rust); color: var(--color-rust);">Back to home</a>
     </div>`;
+}
+
+/** @function 46: reorderLastOrder - refills the cart with the last order's items and goes to cart */
+function reorderLastOrder() {
+  const order = Storage.get('dcc_last_order');
+  if (!order) return;
+
+  Storage.set(CART_KEY, order.items.map(item => ({
+    id: item.id, name: item.name, price: item.price, qty: item.qty
+  })));
+
+  showToast('Your last order has been added to your cart', 'success');
+  window.location.href = '/pages/cart.html';
 }
