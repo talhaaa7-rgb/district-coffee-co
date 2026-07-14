@@ -1,0 +1,110 @@
+/* ==========================================================================
+   District Coffee Co — Component Styles
+   Every component here is rendered by a JS function in assets/js/components/
+   so the same markup is reused across every page.
+   ========================================================================== */
+
+/* ---- Navbar ---- */
+.dc-navbar {
+  background: var(--color-parchment);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: box-shadow var(--transition-base);
+}
+.dc-navbar.is-scrolled { box-shadow: var(--shadow-sm); }
+.dc-navbar .brand {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--color-espresso);
+}
+.dc-navbar .nav-link-custom {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-ink);
+  padding: var(--space-2) var(--space-4);
+}
+.dc-navbar .nav-link-custom.active { color: var(--color-rust); }
+.dc-navbar .cart-badge {
+  background: var(--color-rust);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--space-1);
+}
+
+/* ---- Footer ---- */
+.dc-footer {
+  background: var(--color-espresso);
+  color: var(--color-cream-text);
+  padding: var(--space-16) 0 var(--space-8);
+}
+.dc-footer a { color: var(--color-cream-text); opacity: 0.8; }
+.dc-footer a:hover { opacity: 1; color: var(--color-gold); }
+.dc-footer .footer-heading {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gold);
+  margin-bottom: var(--space-4);
+}
+
+/* ---- Product Card ---- */
+.product-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  height: 100%;
+}
+.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.product-card img { width: 100%; height: 200px; object-fit: cover; }
+.product-card .product-body { padding: var(--space-4); }
+.product-card .product-tag {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  text-transform: uppercase;
+  color: var(--color-forest);
+  letter-spacing: 0.06em;
+}
+
+/* ---- Signature element: dotted-leader price line ----
+   Mirrors a real café menu board convention: item name, a run of
+   dots to the margin, then the price. Encodes real menu information,
+   not decoration. */
+.price-line {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+}
+.price-line .item-name { white-space: nowrap; font-size: var(--fs-base); }
+.price-line .leader {
+  flex: 1;
+  border-bottom: 2px dotted var(--color-border);
+  transform: translateY(-4px);
+}
+.price-line .price { color: var(--color-gold); font-weight: 700; white-space: nowrap; }
+
+/* ---- Hero ---- */
+.hero {
+  background: var(--color-espresso);
+  color: var(--color-cream-text);
+  padding: var(--space-24) 0;
+  position: relative;
+  overflow: hidden;
+}
+.hero h1 { font-size: var(--fs-3xl); }
+.hero .lede { font-size: var(--fs-lg); color: var(--color-parchment-dark); max-width: 46ch; }

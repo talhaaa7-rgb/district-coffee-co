@@ -1,0 +1,30 @@
+/* ==========================================================================
+   District Coffee Co — Responsive Overrides
+   Bootstrap handles the grid; this file handles brand-specific scaling.
+   ========================================================================== */
+
+@media (max-width: 991.98px) {
+  .hero h1 { font-size: var(--fs-2xl); }
+  .section { padding: var(--space-16) 0; }
+}
+
+@media (max-width: 767.98px) {
+  :root {
+    --fs-3xl: 2.25rem;
+    --fs-2xl: 1.75rem;
+  }
+  .container-custom { padding: 0 var(--space-4); }
+  .hero { padding: var(--space-16) 0; text-align: center; }
+  .hero .lede { margin-left: auto; margin-right: auto; }
+  .price-line .item-name { font-size: var(--fs-sm); }
+  #toast-region {
+    right: var(--space-4);
+    left: var(--space-4);
+    bottom: var(--space-4);
+  }
+  .toast-item { min-width: unset; }
+}
+
+@media (max-width: 575.98px) {
+  .section { padding: var(--space-12) 0; }
+}
