@@ -108,3 +108,12 @@
 }
 .hero h1 { font-size: var(--fs-3xl); }
 .hero .lede { font-size: var(--fs-lg); color: var(--color-parchment-dark); max-width: 46ch; }
+/* Ensure the nav menu starts collapsed on mobile/tablet widths */
+@media (max-width: 991.98px) {
+  .dc-navbar .navbar-collapse {
+    display: none;
+  }
+  .dc-navbar .navbar-collapse.show {
+    display: block;
+  }
+}
