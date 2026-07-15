@@ -38,7 +38,7 @@ function createProductCard(product) {
 function fetchFeaturedProducts() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      const featured = PRODUCTS.filter(p => p.featured);
+      const featured = getEffectiveProducts().filter(p => p.featured);
       if (featured.length > 0) {
         resolve(featured);
       } else {
