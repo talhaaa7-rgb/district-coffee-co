@@ -37,7 +37,7 @@ function renderFooter() {
           <p class="opacity-50 mb-0" style="font-size: var(--fs-sm);">
             &copy; <span id="footer-year"></span> District Coffee Co. All rights reserved.
           </p>
-          <a href="/pages/admin-login.html" class="opacity-50" style="font-size: var(--fs-sm);">Staff login</a>
+          <a href="/district-coffee-co/pages/admin-login.html" class="opacity-50" style="font-size: var(--fs-sm);">Staff login</a>
         </div>
       </div>
     </footer>`;
