@@ -43,3 +43,15 @@ const PRODUCTS = [
     desc: 'Fudgy center, crackled top, 70% dark chocolate.',
     img: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600' }
 ];
+/** @function 56: getEffectiveProducts - merges admin edits on top of the base catalog */
+function getEffectiveProducts() {
+  const overrides = Storage.get('dcc_product_overrides', {});
+  return PRODUCTS.map(p => overrides[p.id] ? { ...p, ...overrides[p.id] } : p);
+}
+
+/** @function 57: saveProductOverride - stores an admin edit for one product */
+function saveProductOverride(id, changes) {
+  const overrides = Storage.get('dcc_product_overrides', {});
+  overrides[id] = { ...(overrides[id] || {}), ...changes };
+  Storage.set('dcc_product_overrides', overrides);
+}
