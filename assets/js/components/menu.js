@@ -13,8 +13,8 @@ function renderMenuGrid(category = 'all') {
 
   setTimeout(() => {
     const products = category === 'all'
-      ? PRODUCTS
-      : PRODUCTS.filter(p => p.category === category);
+  ? getEffectiveProducts()
+  : getEffectiveProducts().filter(p => p.category === category);
 
     if (products.length === 0) {
       showErrorState(container, 'No items match that filter.', () => renderMenuGrid('all'));
