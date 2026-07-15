@@ -33,9 +33,12 @@ function renderFooter() {
           </div>
         </div>
         <hr class="mt-5" style="border-color: var(--color-border-dark);">
-        <p class="opacity-50 mb-0" style="font-size: var(--fs-sm);">
-          &copy; <span id="footer-year"></span> District Coffee Co. All rights reserved.
-        </p>
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <p class="opacity-50 mb-0" style="font-size: var(--fs-sm);">
+            &copy; <span id="footer-year"></span> District Coffee Co. All rights reserved.
+          </p>
+          <a href="/pages/admin-login.html" class="opacity-50" style="font-size: var(--fs-sm);">Staff login</a>
+        </div>
       </div>
     </footer>`;
 
