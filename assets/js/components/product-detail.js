@@ -18,7 +18,7 @@ function renderProductDetail() {
 
   setTimeout(() => {
     const id = getProductIdFromURL();
-    const product = PRODUCTS.find(p => p.id === id);
+    const product = getEffectiveProducts().find(p => p.id === id);
 
     if (!product) {
       showErrorState(container, 'We couldn\'t find that item.', null);
