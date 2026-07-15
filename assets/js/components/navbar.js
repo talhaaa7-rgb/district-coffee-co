@@ -10,12 +10,12 @@ function renderNavbar(activePage = '') {
   if (!root) return;
 
   const cartCount = getCartCount();
-  const links = [
-    { href: '/index.html', label: 'Home', key: 'home' },
-    { href: '/pages/menu.html', label: 'Menu', key: 'menu' },
-    { href: '/pages/locations.html', label: 'Locations', key: 'locations' },
-    { href: '/pages/about.html', label: 'About', key: 'about' },
-    { href: '/pages/contact.html', label: 'Contact', key: 'contact' }
+const links = [
+    { href: resolveLink('index.html'), label: 'Home', key: 'home' },
+    { href: resolveLink('pages/menu.html'), label: 'Menu', key: 'menu' },
+    { href: resolveLink('pages/locations.html'), label: 'Locations', key: 'locations' },
+    { href: resolveLink('pages/about.html'), label: 'About', key: 'about' },
+    { href: resolveLink('pages/contact.html'), label: 'Contact', key: 'contact' }
   ];
 
   const linksHtml = links.map(link => `
@@ -29,7 +29,7 @@ function renderNavbar(activePage = '') {
   root.innerHTML = `
     <nav class="navbar navbar-expand-lg dc-navbar" aria-label="Main navigation">
       <div class="container-custom d-flex align-items-center justify-content-between w-100">
-        <a class="brand" href="/index.html">District Coffee Co.</a>
+        <a class="brand" href="${resolveLink('index.html')}">District Coffee Co.</a>
         <button class="navbar-toggler" type="button" aria-label="Toggle navigation"
                 aria-expanded="false" aria-controls="dc-nav-collapse" id="nav-toggle-btn">
           <span class="navbar-toggler-icon"></span>
@@ -38,7 +38,7 @@ function renderNavbar(activePage = '') {
           <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mt-3 mt-lg-0">
             ${linksHtml}
             <li class="nav-item">
-              <a class="nav-link nav-link-custom d-flex align-items-center" href="/pages/cart.html">
+              <a class="nav-link nav-link-custom d-flex align-items-center" href="${resolveLink('pages/cart.html')}">
                 Cart <span class="cart-badge" id="cart-count" aria-label="${cartCount} items in cart">${cartCount}</span>
               </a>
             </li>

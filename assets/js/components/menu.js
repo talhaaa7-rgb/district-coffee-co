@@ -23,7 +23,7 @@ function renderMenuGrid(category = 'all') {
 
     container.innerHTML = products.map(p => `
       <div class="col-sm-6 col-lg-4">
-        <a href="/pages/product-detail.html?id=${p.id}" class="text-decoration-none text-reset">
+        <a href="${resolveLink('pages/product-detail.html')}?id=${p.id}" class="text-decoration-none text-reset">
           <div class="product-card">
             <img src="${p.img}" alt="${p.name}" loading="lazy"
      onerror="this.onerror=null; this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27400%27%3E%3Crect width=%27100%25%27 height=%27100%25%27 fill=%27%23E8DBC4%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 font-family=%27sans-serif%27 font-size=%2724%27 fill=%27%232E1F17%27 text-anchor=%27middle%27 dy=%27.3em%27%3EDistrict Coffee Co.%3C/text%3E%3C/svg%3E';">

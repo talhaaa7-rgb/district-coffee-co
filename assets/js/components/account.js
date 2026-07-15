@@ -7,11 +7,11 @@
 /** @function 45: renderAccountPage - shows user info + order history, or redirects to login */
 function renderAccountPage() {
   const container = document.getElementById('account-root');
-  if (!container) return;
+  if (!container) return
 
   const user = getCurrentUser();
   if (!user) {
-    window.location.href = '/pages/login.html';
+    window.location.href = resolveLink('pages/login.html');
     return;
   }
 
@@ -31,7 +31,7 @@ function renderAccountPage() {
         <span class="price">${formatPrice(lastOrder.total)}</span>
       </div>
     </div>` : `
-    <p class="text-muted mt-4">No orders yet. <a href="/pages/menu.html">Browse the menu</a>.</p>`;
+    <p class="text-muted mt-4">No orders yet. <a href="${resolveLink('pages/menu.html')}">Browse the menu</a>.</p>`;
 
   container.innerHTML = `
     <p class="eyebrow mb-2">Account</p>

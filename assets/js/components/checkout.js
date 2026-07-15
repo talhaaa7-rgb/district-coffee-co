@@ -11,7 +11,7 @@ function renderOrderSummary() {
 
   const cart = getCart();
   if (cart.length === 0) {
-    container.innerHTML = `<p class="text-muted">Your cart is empty. <a href="/pages/menu.html">Browse the menu</a>.</p>`;
+    container.innerHTML = `<p class="text-muted">Your cart is empty. <a href="${resolveLink('pages/menu.html')}">Browse the menu</a>.</p>`;
     const submitBtn = document.getElementById('place-order-btn');
     if (submitBtn) submitBtn.disabled = true;
     return;
@@ -84,5 +84,5 @@ function handleCheckoutSubmit(event) {
   Storage.set('dcc_all_orders', allOrders);
 
   clearCart();
-  window.location.href = `/pages/order-confirmation.html?order=${orderId}`;
+  window.location.href = `${resolveLink('pages/order-confirmation.html')}?order=${orderId}`;
 }

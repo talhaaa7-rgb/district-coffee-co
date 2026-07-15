@@ -87,7 +87,7 @@ function renderCartPage() {
       <div class="text-center py-5">
         <p class="font-display fs-3 mb-3">Your cart is empty</p>
         <p class="text-muted mb-4">Nothing here yet — go find something good.</p>
-        <a href="/pages/menu.html" class="btn btn-brand">Browse the menu</a>
+        <a href="${resolveLink('pages/menu.html')}" class="btn btn-brand">Browse the menu</a>
       </div>`;
     return;
   }
@@ -124,7 +124,7 @@ function renderCartPage() {
             <span class="price">${formatPrice(total)}</span>
           </div>
           <p class="text-muted mb-4" style="font-size: var(--fs-sm);">Tax calculated at checkout.</p>
-          <a href="/pages/checkout.html" class="btn btn-brand w-100">Checkout</a>
+          <a href="${resolveLink('pages/checkout.html')}" class="btn btn-brand w-100">Checkout</a>
         </div>
       </div>
     </div>`;

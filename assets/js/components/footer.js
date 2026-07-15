@@ -18,13 +18,13 @@ function renderFooter() {
           </div>
           <div class="col-6 col-md-2">
             <p class="footer-heading">Visit</p>
-            <p class="mb-1"><a href="/pages/locations.html">Locations</a></p>
-            <p class="mb-1"><a href="/pages/menu.html">Menu</a></p>
+            <p class="mb-1"><a href="${resolveLink('pages/locations.html')}">Locations</a></p>
+            <p class="mb-1"><a href="${resolveLink('pages/menu.html')}">Menu</a></p>
           </div>
           <div class="col-6 col-md-2">
             <p class="footer-heading">Company</p>
-            <p class="mb-1"><a href="/pages/about.html">About</a></p>
-            <p class="mb-1"><a href="/pages/contact.html">Contact</a></p>
+            <p class="mb-1"><a href="${resolveLink('pages/about.html')}">About</a></p>
+            <p class="mb-1"><a href="${resolveLink('pages/contact.html')}">Contact</a></p>
           </div>
           <div class="col-md-4">
             <p class="footer-heading">Hours</p>
@@ -37,7 +37,7 @@ function renderFooter() {
           <p class="opacity-50 mb-0" style="font-size: var(--fs-sm);">
             &copy; <span id="footer-year"></span> District Coffee Co. All rights reserved.
           </p>
-          <a href="/district-coffee-co/pages/admin-login.html" class="opacity-50" style="font-size: var(--fs-sm);">Staff login</a>
+          <a href="${resolveLink('pages/admin-login.html')}" class="opacity-50" style="font-size: var(--fs-sm);">Staff login</a>
         </div>
       </div>
     </footer>`;

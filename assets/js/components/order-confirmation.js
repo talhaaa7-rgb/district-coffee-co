@@ -16,7 +16,7 @@ function renderConfirmation() {
     container.innerHTML = `
       <div class="text-center py-5">
         <p class="font-display fs-3 mb-3">We couldn't find that order</p>
-        <a href="/pages/menu.html" class="btn btn-brand">Back to menu</a>
+        <a href="${resolveLink('pages/menu.html')}" class="btn btn-brand">Back to menu</a>
       </div>`;
     return;
   }
@@ -44,7 +44,7 @@ function renderConfirmation() {
     </div>
     <div class="text-center mt-5 d-flex gap-3 justify-content-center flex-wrap">
       <button class="btn btn-brand" onclick="reorderLastOrder()">Order again</button>
-      <a href="/index.html" class="btn btn-brand-outline" style="border-color: var(--color-rust); color: var(--color-rust);">Back to home</a>
+      <a href="${resolveLink('index.html')}" class="btn btn-brand-outline" style="border-color: var(--color-rust); color: var(--color-rust);">Back to home</a>
     </div>`;
 }
 
@@ -58,5 +58,5 @@ function reorderLastOrder() {
   })));
 
   showToast('Your last order has been added to your cart', 'success');
-  window.location.href = '/pages/cart.html';
+  window.location.href = resolveLink('pages/cart.html');
 }

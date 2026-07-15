@@ -5,10 +5,9 @@
  * Data is real (drawn from localStorage + PRODUCTS) but only reflects
  * orders placed in this browser, since there's no shared backend.
  */
-/** @function 55: initAdminGuard - redirects to admin login if no admin session exists */
 function initAdminGuard() {
   if (!getAdminSession()) {
-    window.location.href = '/pages/admin-login.html';
+    window.location.href = resolveLink('pages/admin-login.html');
     return false;
   }
   return true;

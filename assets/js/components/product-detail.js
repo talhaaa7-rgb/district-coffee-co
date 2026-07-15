@@ -25,8 +25,8 @@ function renderProductDetail() {
       const btn = container.querySelector('#retry-btn');
       if (btn) btn.remove(); // no sensible retry — send them back to the menu instead
       container.insertAdjacentHTML('beforeend',
-        `<div class="text-center"><a href="/pages/menu.html" class="btn btn-brand mt-2">Back to menu</a></div>`);
-      return;
+        `<div class="text-center"><a href="${resolveLink('pages/menu.html')}" class="btn btn-brand mt-2">Back to menu</a></div>`);
+         return;
     }
 
     container.innerHTML = `

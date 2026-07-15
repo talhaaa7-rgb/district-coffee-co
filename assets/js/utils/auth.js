@@ -47,7 +47,7 @@ function getCurrentUser() {
 /** @function 40: logout - clears the mock session */
 function logout() {
   Storage.set(SESSION_KEY, null);
-  window.location.href = '/index.html';
+  window.location.href = resolveLink('index.html');
 }
 /**
  * Admin authentication is separate from customer accounts. There is
@@ -75,7 +75,7 @@ function getAdminSession() {
 /** @function 53: adminLogout - clears the admin session */
 function adminLogout() {
   Storage.set(ADMIN_SESSION_KEY, null);
-  window.location.href = '/pages/admin-login.html';
+  window.location.href = resolveLink('pages/admin-login.html');
 }
 
 /** @function 54: handleAdminLoginSubmit - validates + submits the admin login form */
@@ -104,7 +104,7 @@ function handleAdminLoginSubmit(event) {
     return;
   }
 
-  window.location.href = '/pages/admin.html';
+  window.location.href = resolveLink('pages/admin.html');
 }
 
 /** @function 41: handleLoginSubmit - validates + submits the login form */
@@ -134,7 +134,7 @@ function handleLoginSubmit(event) {
   }
 
   showToast('Welcome back!', 'success');
-  window.location.href = '/pages/account.html';
+  window.location.href = resolveLink('pages/account.html');
 }
 
 /** @function 42: handleSignupSubmit - validates + submits the signup form */
@@ -169,5 +169,5 @@ function handleSignupSubmit(event) {
   }
 
   showToast('Account created!', 'success');
-  window.location.href = '/pages/account.html';
+  window.location.href = resolveLink('pages/account.html');
 }
