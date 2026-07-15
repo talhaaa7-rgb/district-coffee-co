@@ -78,26 +78,89 @@ function renderAdminOrdersTable() {
     </div>`;
 }
 
-/** @function 50: renderAdminProductsTable - read-only view of the full menu catalog */
+let editingProductId = null;
+
+/** @function 50: renderAdminProductsTable - editable view of the full menu catalog */
 function renderAdminProductsTable() {
   const container = document.getElementById('admin-products');
   if (!container) return;
 
-  const rows = PRODUCTS.map(p => `
-    <tr>
-      <td>${p.name}</td>
-      <td class="text-capitalize">${p.category}</td>
-      <td style="font-family: var(--font-mono);">${formatPrice(p.price)}</td>
-      <td>${p.featured ? '<span class="badge" style="background: var(--color-forest);">Featured</span>' : ''}</td>
-    </tr>`).join('');
+  const products = getEffectiveProducts();
+
+  const rows = products.map(p => {
+    if (p.id === editingProductId) {
+      return `
+        <tr>
+          <td><input type="text" class="form-control form-control-sm" id="edit-name-${p.id}" value="${p.name}"></td>
+          <td>
+            <select class="form-select form-select-sm" id="edit-category-${p.id}">
+              <option value="coffee" ${p.category === 'coffee' ? 'selected' : ''}>Coffee</option>
+              <option value="dessert" ${p.category === 'dessert' ? 'selected' : ''}>Dessert</option>
+            </select>
+          </td>
+          <td><input type="number" step="0.25" min="0" class="form-control form-control-sm" id="edit-price-${p.id}" value="${p.price}"></td>
+          <td>
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="edit-featured-${p.id}" ${p.featured ? 'checked' : ''}>
+              <label class="form-check-label" for="edit-featured-${p.id}" style="font-size: var(--fs-sm);">Featured</label>
+            </div>
+          </td>
+          <td class="text-end">
+            <button class="btn btn-sm btn-brand" onclick="saveProductEdit('${p.id}')">Save</button>
+            <button class="btn btn-sm btn-link" onclick="cancelProductEdit()">Cancel</button>
+          </td>
+        </tr>`;
+    }
+
+    return `
+      <tr>
+        <td>${p.name}</td>
+        <td class="text-capitalize">${p.category}</td>
+        <td style="font-family: var(--font-mono);">${formatPrice(p.price)}</td>
+        <td>${p.featured ? '<span class="badge" style="background: var(--color-forest);">Featured</span>' : ''}</td>
+        <td class="text-end">
+          <button class="btn btn-sm btn-brand-outline" style="border-color: var(--color-rust); color: var(--color-rust);" onclick="startEditProduct('${p.id}')">Edit</button>
+        </td>
+      </tr>`;
+  }).join('');
 
   container.innerHTML = `
     <div class="table-responsive">
       <table class="table align-middle">
         <thead>
-          <tr><th>Name</th><th>Category</th><th>Price</th><th></th></tr>
+          <tr><th>Name</th><th>Category</th><th>Price</th><th></th><th></th></tr>
         </thead>
         <tbody>${rows}</tbody>
       </table>
     </div>`;
+}
+
+/** @function 58: startEditProduct - switches one row into edit mode */
+function startEditProduct(id) {
+  editingProductId = id;
+  renderAdminProductsTable();
+}
+
+/** @function 59: cancelProductEdit - exits edit mode without saving */
+function cancelProductEdit() {
+  editingProductId = null;
+  renderAdminProductsTable();
+}
+
+/** @function 60: saveProductEdit - reads the edited fields and persists an override */
+function saveProductEdit(id) {
+  const name = document.getElementById(`edit-name-${id}`).value.trim();
+  const category = document.getElementById(`edit-category-${id}`).value;
+  const price = parseFloat(document.getElementById(`edit-price-${id}`).value);
+  const featured = document.getElementById(`edit-featured-${id}`).checked;
+
+  if (!name || isNaN(price) || price < 0) {
+    showToast('Enter a valid name and price.', 'error');
+    return;
+  }
+
+  saveProductOverride(id, { name, category, price, featured });
+  editingProductId = null;
+  renderAdminProductsTable();
+  showToast('Product updated', 'success');
 }
